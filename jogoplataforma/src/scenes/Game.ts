@@ -34,8 +34,7 @@ export class Game extends Scene {
         this.createPlatforms();
         this.createPlayer();
         this.createStars();
-        this.createCollider(this.player, this.platforms, this.stars, this.bombs);
-    
+        this.createCollider();
 
     }
 
@@ -61,10 +60,10 @@ export class Game extends Scene {
 
 
     createPlayer() {
-        player = this.physics.add.sprite(100, 450, 'dude');
+        this.player = this.physics.add.sprite(100, 450, 'dude');
 
-        player.setBounce(0.2);
-        player.setCollideWorldBounds(true);
+        this.player.setBounce(0.2);
+        this.player.setCollideWorldBounds(true);
 
         this.anims.create({
             key: 'left',
@@ -99,12 +98,15 @@ export class Game extends Scene {
         })
     }
 
-    createCollider(player,platforms,stars,bombs){
-        this.physics.add.collider(player, platforms);
-        this.physics.add.collider(player, bombs, this.handleHitBomb, undefined, this);
-        this.physics.add.collider(stars, platforms);
-        this.physics.add.collider(bombs, platforms);
+    createCollider(){
+        this.physics.add.collider(this.player, this.platforms);
+        this.physics.add.collider(this.player, this.bombs, this.handleHitBomb, undefined, this);
+        this.physics.add.collider(this.stars, this.platforms);
+        this.physics.add.collider(this.bombs, this.platforms);
     }
-
+    handleHitBomb(player, bomb) {
+        // Code to handle the collision with a bomb
+        console.log('Player hit a bomb!');
+    }
 
 }
