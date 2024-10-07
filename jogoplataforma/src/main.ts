@@ -14,20 +14,8 @@ const config: Types.Core.GameConfig = {
         autoCenter: Scale.CENTER_BOTH
     },
     scene: [
-        preload: preload,
-        create: create,
-        update:update
+        Game
     ]
 };
 
 export default new Game(config);
-
-function preload() {
-    
-}
-function create() {
-    
-}
-function update() {
-    
-}
